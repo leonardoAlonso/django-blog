@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.text import slugify
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 status = (
@@ -71,9 +72,9 @@ class Articulo(models.Model):
     nombre = models.CharField(
         max_length=50, null=False, blank=False, unique=True)
     slug = models.SlugField(max_length=100, unique=True, blank=True)
-    autor = models.OneToOneField(
+    autor = models.ForeignKey(
         Autor, on_delete=models.CASCADE, related_name='blog_posts')
-    contenido = models.TextField(blank=False, null=False)
+    contenido = RichTextField(blank=False, null=False)
     cover = models.ImageField(upload_to='blog', blank=True, null=True)
     status = models.IntegerField(choices=status, default=0)
     categorias = models.ManyToManyField(Categoria)
