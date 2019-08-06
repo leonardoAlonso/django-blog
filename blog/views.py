@@ -10,5 +10,5 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['destacados'] = Articulo.objects.filter(is_outstanding=True)
-        print(context)
+        context['latest'] = Articulo.objects.all()[:3]
         return context
