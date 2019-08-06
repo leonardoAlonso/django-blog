@@ -9,3 +9,8 @@
   background-size: cover;
   background-position: center bottom;
 }
+.text-overflow {
+  height: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
