@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 # Create your views here.
 from .models import Articulo, Categoria, Tag
 from django.db.models import Q
@@ -30,17 +30,10 @@ class BlogView(ListView):
             print(queryset)
         return queryset
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(BlogView, self).get_context_data(**kwargs)
-        context['latest'] = Articulo.objects.all()[:3]
-        categorias = Categoria.objects.all()
-        categorias_dic = {}
-        for categoria in categorias:
-            id = categoria.id
-            if Articulo.objects.filter(categorias__id=id):
-                categorias_dic[categoria.nombre] = Articulo.objects.filter(
-                    categorias__id=id).count()
-        context['categorias'] = categorias_dic
-        print(context['categorias'])
-        context['tags'] = Tag.objects.all()
-        return context
+
+class PostView(DetailView):
+    template_name = 'articulo.html'
+    model = Articulo
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+    context_object_name = 'articulo'

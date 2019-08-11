@@ -1,0 +1,95 @@
+{% extends 'base_blog.html' %} {% load static %}
+<div class="container">
+  <div class="row">
+    {% block blog_content %}
+    <!-- Latest Posts -->
+    <main class="post blog-post col-lg-8">
+      <div class="container">
+        <div class="post-single">
+          <div class="post-thumbnail">
+            <img
+              src="{{ articulo.cover.url }}"
+              alt="{{ articulo.nombre }}"
+              class="img-fluid"
+            />
+          </div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="category">
+                {% for categoria in articulo.categorias.all %}
+                <a href="#">{{ categoria }}</a>
+                {% endfor %}
+              </div>
+            </div>
+            <h1>
+              {{ articulo.nombre }}
+              <!--<a href="#"><i class="fa fa-bookmark-o"></i></a>-->
+            </h1>
+            <div
+              class="post-footer d-flex align-items-center flex-column flex-sm-row"
+            >
+              <a href="#" class="author d-flex align-items-center flex-wrap">
+                <div class="avatar">
+                  <img
+                    src="{{ articulo.autor.foto.url }}"
+                    alt="{{ articulo.autor }}"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="title">
+                  <span>{{ articulo.autor }}</span>
+                </div></a
+              >
+              <div class="d-flex align-items-center flex-wrap">
+                <div class="date">
+                  <i class="icon-clock"></i>{{ articulo.created }}
+                </div>
+                {% comment %}
+                <div class="views"><i class="icon-eye"></i> 500</div>
+                <div class="comments meta-last">
+                  <i class="icon-comment"></i>12
+                </div>
+                {% endcomment %}
+              </div>
+            </div>
+            <div class="post-body">
+              <p class="lead">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+              <p>{{ articulo.contenido | safe }}</p>
+            </div>
+            <div class="post-tags">
+              {% for tag in articulo.tags.all %}
+              <a class="tag">#{{ tag }}</a>
+              {% endfor %}
+            </div>
+            <div
+              class="posts-nav d-flex justify-content-between align-items-stretch flex-column flex-md-row"
+            >
+              <a href="#" class="prev-post text-left d-flex align-items-center">
+                <div class="icon prev"><i class="fa fa-angle-left"></i></div>
+                <div class="text">
+                  <strong class="text-primary">Previous Post </strong>
+                  <h6>I Bought a Wedding Dress.</h6>
+                </div></a
+              ><a
+                href="#"
+                class="next-post text-right d-flex align-items-center justify-content-end"
+              >
+                <div class="text">
+                  <strong class="text-primary">Next Post </strong>
+                  <h6>I Bought a Wedding Dress.</h6>
+                </div>
+                <div class="icon next"><i class="fa fa-angle-right"> </i></div
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    {% endblock blog_content %}
+  </div>
+</div>

@@ -52,7 +52,7 @@
                 <a href="#">{{ categoria }}</a>
                 {% endfor %}
               </div>
-              <a href="post.html">
+              <a href="{% url 'articulo' slug=destacado.slug %}">
                 <h2 class="h4">
                   {{ destacado.nombre }}
                 </h2>
