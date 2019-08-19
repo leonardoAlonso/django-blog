@@ -37,3 +37,25 @@ class PostView(DetailView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
     context_object_name = 'articulo'
+
+
+class CategoriaView(ListView):
+    template_name = 'blog.html'
+    context_object_name = 'articulos'
+    paginate_by = 4
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Articulo.objects.filter(
+            categorias__slug=self.kwargs['slug'])
+        return queryset
+
+
+class TagView(ListView):
+    template_name = 'blog.html'
+    context_object_name = 'articulos'
+    paginate_by = 4
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Articulo.objects.filter(
+            tags__slug=self.kwargs['slug'])
+        return queryset

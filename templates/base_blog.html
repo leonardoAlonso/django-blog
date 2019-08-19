@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% block content %}
-{% load tags %}
+{% extends 'base.html' %} {% block content %} {% load tags %}
 <div class="container">
   <div class="row">
     {% block blog_content %} {% endblock blog_content %}
@@ -28,8 +27,7 @@
           <h3 class="h6">Ultimos Posts</h3>
         </header>
         <div class="blog-posts">
-          {% get_latest_three as latest %}
-          {% for post in latest %}
+          {% get_latest_three as latest %} {% for post in latest %}
           <a href="{% url 'articulo' slug=post.slug %}">
             <div class="item d-flex align-items-center">
               <div class="image">
@@ -58,8 +56,8 @@
         <header>
           <h3 class="h6">Categorias</h3>
         </header>
-        {% get_categories as categorias %}
-        {% for key, value in categorias.items %}
+        {% get_categories as categorias %} 
+        {% for key, value in categorias.items%}
         <div class="item d-flex justify-content-between">
           <a href="#">{{ key }}</a>
           <span>{{ value }}</span>
@@ -72,8 +70,7 @@
           <h3 class="h6">Tags</h3>
         </header>
         <ul class="list-inline">
-          {% get_tags as tags %}
-          {% for tag in tags %}
+          {% get_tags as tags %} {% for tag in tags %}
           <li class="list-inline-item">
             <a href="#" class="tag">#{{ tag }}</a>
           </li>

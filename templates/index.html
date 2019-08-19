@@ -115,7 +115,7 @@
       {% for post in latest %}
       <div class="post col-md-4">
         <div class="post-thumbnail">
-          <a href="post.html"
+          <a href="{% url 'articulo' slug=post.slug %}"
             ><img
               src="{{ post.cover.url }}"
               alt="{{ post.nombre }}"

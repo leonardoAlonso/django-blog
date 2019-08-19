@@ -11,7 +11,7 @@
           {% for post in articulos %}
           <div class="post col-xl-6">
             <div class="post-thumbnail">
-              <a href="post.html"
+              <a href="{% url 'articulo' slug=post.slug %}"
                 ><img
                   src="{{ post.cover.url }}"
                   alt="{{ post.nombre }}"
@@ -24,7 +24,9 @@
                 <div class="date meta-last">{{ post.created }}</div>
                 <div class="category">
                   {% for categoria in post.categorias.all %}
-                  <a href="#">{{ categoria }}</a>
+                  <a href="{% url 'categoria' slug=categoria.slug %}">
+                    <p>{{ categoria }}</p>
+                  </a>
                   {% endfor %}
                 </div>
               </div>
@@ -50,7 +52,8 @@
                   </div>
                 </a>
                 <div class="comments meta-last">
-                  {% for tag in post.tags.all %} #{{ tag }}
+                  {% for tag in post.tags.all %}
+                  <a href="{% url 'tag' slug=tag.slug %}">#{{ tag }}</a>
                   {% endfor %}
                 </div>
               </footer>
